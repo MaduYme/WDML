@@ -1,0 +1,71 @@
+/* styles.css */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #080c85;
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    background-color: #059e0c;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Timeline Styles */
+#timeline {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.milestone {
+    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.milestone:hover {
+    background-color: #eee;
+}
+
+/* Chart Styles */
+canvas {
+    display: block;
+    margin: 20px auto;
+}
+/* styles.css */
+canvas {
+    display: block;
+    margin: 20px auto;
+    max-width: 600px;
+}
+setTimeout(() => {
+    window.location.href = "home.html";
+}, 5000);

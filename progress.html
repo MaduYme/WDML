@@ -1,0 +1,93 @@
+<!-- progress.html -->
+<!DOCTYPE html>
+<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Progress</title> <link rel="stylesheet" href="styles.css"> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> </head> <body> <h2>Project Progress</h2> <canvas id="progressChart"></canvas> <script src="scripts.js"></script> </body>
+<html lang="en">
+<head>
+   <a href="index.html" class="back-button">← Back to Home</a>
+<meta charset="UTF-8">
+    <title>Pending Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .back-button {
+            display: block;
+            margin: 20px 0;
+            text-decoration: none;
+            color: #4CAF50;
+        }
+    </style>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Add styles for charts */
+<!-- progress.html --> <canvas id="progressChart">
+    </style>
+</head>
+<body>
+
+    <h1>Pending Projects</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>Estimated Completion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Kekirawa Lab</td>
+                <td>No Confirmation</td>
+                <td>2024-11-25</td>
+                <td>2024-12-20</td>
+            </tr>
+            <tr>
+                <td>Hettipola Lab</td>
+   		<td>No Confirmation</td>
+                <td>2024-11-25</td>
+                <td>2024-12-08</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <canvas id="progressChart"></canvas>
+    <script>
+        // JavaScript for Chart.js
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        const progressChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Completed', 'In Progress', 'Pending'],
+                datasets: [{
+                    data: [30, 50, 20],
+                    backgroundColor: ['green', 'blue', 'orange']
+                }]
+            }
+        });
+    </script>
+
+</body>
+</html>

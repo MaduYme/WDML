@@ -1,0 +1,106 @@
+
+<!DOCTYPE html> 
+<html lang="en"> <head>
+ <a href="index.html" class="back-button">← Back to Home</a> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Stock</title> <link rel="stylesheet" href="styles.css"> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> </head> <body> <h2>Stock Progress</h2> <canvas id="stockChart"></canvas> <script src="scripts.js"></script>
+<html lang="en">
+<head>
+
+
+<meta charset="UTF-8">
+    <title>Stock Sheet</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .chart {
+            width: 45%;
+        }
+        .back-button {
+            display: block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #4CAF50;
+        }
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+<canvas id="stockChart">
+        /* Add styles for stock charts */
+    </style>
+</head>
+<body>
+
+
+    
+    <div class="chart-container">
+        <div class="chart">
+            <h3>Material Stock</h3>
+            <canvas id="materialStock"></canvas>
+        </div>
+        <div class="chart">
+            <h3>Inventory Usage</h3>
+            <canvas id="inventoryUsage"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Material Stock Bar Chart
+        new Chart(document.getElementById('materialStock'), {
+            type: 'bar',
+            data: {
+                labels: ['Paper', 'Ink', 'Components'],
+                datasets: [{
+                    label: 'Stock Level (kg/units)',
+                    data: [500, 250, 100],
+                    backgroundColor: ['#4CAF50', '#2196F3', '#FFC107']
+                }]
+            }
+        });
+
+        // Inventory Usage Pie Chart
+        new Chart(document.getElementById('inventoryUsage'), {
+            type: 'pie',
+            data: {
+                labels: ['Used', 'Remaining'],
+                datasets: [{
+                    data: [65, 35],
+                    backgroundColor: ['#FF5722', '#4CAF50']
+                }]
+            }
+        });
+    </script>
+  
+    <canvas id="stockChart"></canvas>
+    <script>
+        // JavaScript for Chart.js
+        const ctx = document.getElementById('stockChart').getContext('2d');
+        const stockChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Box Bar', 'Cladding', 'Plastic'],
+                datasets: [{
+                    label: 'Stock Levels',
+                    data: [100, 75, 50],
+                    backgroundColor: ['red', 'yellow', 'green']
+                }]
+            }
+        });
+    </script>
+     <img src="./assets/chart.png"  alt="Sample Image" style="max-width: 100%; height: auto;" >
+
+       <a href="index.html">Home</a>
+
+</body>
+</html>
