@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #020066;
+            color: white;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #343a40;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+
+<header>
+    <h1> Gallery</h1>
+    <h2>Finished Project</h2>
+    <p></p>
+</header>
+<a href="index.html" class="back-button">← Back to Home</a> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Stock</title> <link rel="stylesheet" href="styles.css"> <script src="https://cdn.jsdelivr.net/npm/chart.js"></script><canvas id="stockChart"></canvas> <script src="scripts.js"></script>
+  
+
+<div class="gallery">
+    <img src="./assets/Photoa.jpg" alt="Sample Photo 1">
+    <img src="./assets/photo B.jpg" alt="Sample Photo 2">
+    <img src="./assets/T01.jpg" alt="Sample Photo 3">
+    <img src="./assets/T02.jpg" alt="Sample Photo 4">
+    <img src="./assets/T03.jpg" alt="Sample Photo 5">
+    <img src="./assets/T04.jpg" alt="Sample Photo 6">
+    <img src="./assets/T05.jpg" alt="Sample Photo 7">
+    <img src="./assets/T06.jpg" alt="Sample Photo 8">
+</div>
+
+<footer>
+    <p>&copy; 2024 Finished Project | Photo Gallery |<i>Wayamba Diagnostic Laboratory (Pvt)Ltd.</i> </p>
+</footer>
+
+</body>
+</html>
