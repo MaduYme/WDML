@@ -21,14 +21,14 @@ nav {
     margin: 20px;
 }
 
-button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    border: none;
-    background-color: #202583;
-    color: white;
-    cursor: pointer;
-}
+button
+{ padding: 10px 20px;
+ margin: 0 10px; 
+ border: none; 
+ background-color: #333;
+ color: white; 
+ cursor: pointer;
+ border-radius:
 
 button:hover {
     background-color: #064e80;
