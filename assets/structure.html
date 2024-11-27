@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint Viewer and Printer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        .blueprints {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .blueprint {
+            width: 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .blueprint img {
+            width: 100%;
+            height: auto;
+        }
+        .print-button {
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .print-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    
+    <script>
+        function printImage(src) {
+            const printWindow = window.open("", "_blank");
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Print Blueprint</title>
+                </head>
+                <body style="margin: 0; padding: 0; text-align: center;">
+                    <img src="${src}" style="width: 100%; height: auto;">
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.onload = () => {
+                printWindow.print();
+                printWindow.close();
+            };
+        }
+    </script>
+</head>
+<a href="index.html" class="back-button">← Back to Home</a>
+<body>
+   
+    <h1>Blueprint Viewer and Printer</h1>
+    <p>View and print your uploaded blueprints.</p>
+
+    <!-- Blueprint Section -->
+    <div class="blueprints">
+        <div class="blueprint">
+            <img src="./assets/hettipola.jpg" alt="Blueprint 1">
+            <button class="print-button" onclick="printImage('blueprints/blueprint1.jpg')">Print</button>
+        </div>
+         <!--
+        <div class="blueprint">
+            <img src="blueprints/blueprint2.jpg" alt="Blueprint 2">
+            <button class="print-button" onclick="printImage('blueprints/blueprint2.jpg')">Print</button>
+        </div>
+        <div class="blueprint">
+            <img src="blueprints/blueprint3.jpg" alt="Blueprint 3">
+            <button class="print-button" onclick="printImage('blueprints/blueprint3.jpg')">Print</button>
+        </div>
+        <div class="blueprint">
+            <img src="blueprints/blueprint4.jpg" alt="Blueprint 4">
+            <button class="print-button" onclick="printImage('blueprints/blueprint4.jpg')">Print</button>
+        </div>
+        <div class="blueprint">
+            <img src="blueprints/blueprint5.jpg" alt="Blueprint 5">
+            <button class="print-button" onclick="printImage('blueprints/blueprint5.jpg')">Print</button>
+        </div>
+        <div class="blueprint">
+            <img src="blueprints/blueprint5.jpg" alt="Blueprint 5">
+            <button class="print-button" onclick="printImage('blueprints/blueprint5.jpg')">Print</button>
+        </div>
+    </div>
+    -->
+</body>
+</html>
