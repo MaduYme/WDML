@@ -18,19 +18,27 @@
             gap: 20px;
         }
         .blueprint {
-            width: 200px;
+            width: 250px;
             border: 1px solid #ccc;
             padding: 10px;
             border-radius: 5px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
         .blueprint img {
             width: 100%;
-            height: auto;
+            height: 250px;
+            object-fit: cover;
         }
-        .print-button {
+        .button-container {
+            display: flex;
+            justify-content: space-between;
             margin-top: 10px;
+        }
+        .action-button {
+            flex-grow: 1;
+            margin: 0 5px;
             background-color: #4CAF50;
             color: white;
             padding: 10px;
@@ -38,67 +46,115 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 14px;
+            transition: background-color 0.3s ease;
         }
-        .print-button:hover {
+        .action-button:hover {
             background-color: #45a049;
         }
-    </style>
-    
-    <script>
-        function printImage(src) {
-            const printWindow = window.open("", "_blank");
-            printWindow.document.write(`
-                <html>
-                <head>
-                    <title>Print Blueprint</title>
-                </head>
-                <body style="margin: 0; padding: 0; text-align: center;">
-                    <img src="${src}" style="width: auto; height: auto;">
-                </body>
-                </html>
-            `);
-            printWindow.document.close();
-            printWindow.onload = () => {
-                printWindow.print();
-                printWindow.close();
-            };
+        .maximize-button {
+            background-color: #2196F3;
         }
-    </script>
+        .maximize-button:hover {
+            background-color: #1976D2;
+        }
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        #modalImage {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        #closeModal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<a href="index.html" class="back-button">← Back to Home</a>
 <body>
-   
+    <a href="index.html" class="back-button">← Back to Home</a>
     <h1>Blueprint Viewer and Printer</h1>
     <p>View and print your uploaded blueprints.</p>
 
     <!-- Blueprint Section -->
     <div class="blueprints">
         <div class="blueprint">
-            <img src="./assets/hettipola.jpg" alt="Blueprint 1">
-            <button class="print-button" onclick="printImage('blueprints/blueprint1.jpg')">Print</button>
-        </div>
-       
-        <div class="blueprint">
-            <img src="./assets/Kekirawa Main lab.jpg" alt="Blueprint 2">
-            <button class="print-button" onclick="printImage('blueprints/blueprint2.jpg')">Print</button>
-        </div>
-         <!-- <div class="blueprint">
-            <img src="blueprints/blueprint3.jpg" alt="Blueprint 3">
-            <button class="print-button" onclick="printImage('blueprints/blueprint3.jpg')">Print</button>
+            <img src="./assets/hettipola.jpg" alt="Hettipola Blueprint">
+            <div class="button-container">
+                <button class="action-button" onclick="printImage('./assets/hettipola.jpg')">Print</button>
+                <button class="action-button maximize-button" onclick="openModal('./assets/hettipola.jpg')">Maximize</button>
+            </div>
         </div>
         <div class="blueprint">
-            <img src="blueprints/blueprint4.jpg" alt="Blueprint 4">
-            <button class="print-button" onclick="printImage('blueprints/blueprint4.jpg')">Print</button>
-        </div>
-        <div class="blueprint">
-            <img src="blueprints/blueprint5.jpg" alt="Blueprint 5">
-            <button class="print-button" onclick="printImage('blueprints/blueprint5.jpg')">Print</button>
-        </div>
-        <div class="blueprint">
-            <img src="blueprints/blueprint5.jpg" alt="Blueprint 5">
-            <button class="print-button" onclick="printImage('blueprints/blueprint5.jpg')">Print</button>
+            <img src="./assets/Kekirawa Main lab.jpg" alt="Kekirawa Main Lab Blueprint">
+            <div class="button-container">
+                <button class="action-button" onclick="printImage('./assets/Kekirawa Main lab.jpg')">Print</button>
+                <button class="action-button maximize-button" onclick="openModal('./assets/Kekirawa Main lab.jpg')">Maximize</button>
+            </div>
         </div>
     </div>
-    -->
+
+    <!-- Modal for Maximized View -->
+    <div id="imageModal">
+        <span id="closeModal">&times;</span>
+        <img id="modalImage">
+    </div>
+
+    <script>
+        function printImage(src) {
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Print Blueprint</title>
+                    <style>
+                        body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+                        img { max-width: 100%; max-height: 100%; object-fit: contain; }
+                    </style>
+                </head>
+                <body>
+                    <img src="${src}" onload="window.print(); window.close();">
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        }
+
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const closeBtn = document.getElementById('closeModal');
+
+            modal.style.display = 'block';
+            modalImg.src = src;
+
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+
+            // Close modal when clicking outside the image
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
+    </script>
 </body>
 </html>
