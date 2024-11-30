@@ -111,3 +111,43 @@ button:hover {
         font-size: 0.9rem;
     }
 }
+    //
+
+    /* General Button Styling */
+.back-button, .delay-button {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.back-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.back-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.delay-button {
+    background-color: #E74C3C; /* Red color for Delay Project */
+    color: white;
+    margin-left: 20px; /* Add some space between buttons */
+}
+
+.delay-button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+    transform: scale(1.05);
+}
+
+.delay-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.8);
+}
+
