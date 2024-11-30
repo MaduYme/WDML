@@ -6,55 +6,190 @@
     <title>Stock Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Different row colors */
+        .available-stock {
+            background-color: #E8F8F5; /* Light greenish */
+        }
+
+        .requested-stock {
+            background-color: #FFEBEE; /* Light pink */
+        }
+
+        .using-stock {
+            background-color: #FFF3E0; /* Light orange */
+        }
+
+        /* Sort Icon */
+        .sort-icon {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            th, td {
+                font-size: 12px;
+                padding: 8px;
+            }
+        }
+
+        /* Back Button */
+        .back-button {
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
+
     <a href="index.html" class="back-button">← Back to Home</a>
     <h2>Stock Progress</h2>
-    <!--  
-    <!-- Container for Multiple Charts 
+
+    <!-- Stock Sheet Table -->
+    <h3>Stock Usage Information</h3>
+    <table id="stockTable">
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Request Date <span class="sort-icon">&#9660;</span></th>
+                <th onclick="sortTable(1)">Item <span class="sort-icon">&#9660;</span></th>
+                <th onclick="sortTable(2)">Qty <span class="sort-icon">&#9660;</span></th>
+                <th onclick="sortTable(3)">Request Qty <span class="sort-icon">&#9660;</span></th>
+                <th onclick="sortTable(4)">Use Date <span class="sort-icon">&#9660;</span></th>
+                <th onclick="sortTable(5)">Using Qty <span class="sort-icon">&#9660;</span></th>
+                <th onclick="sortTable(6)">Description <span class="sort-icon">&#9660;</span></th>
+                <th onclick="sortTable(6)">Available Stock <span class="sort-icon">&#9660;</span></th>
+            </tr>
+        </thead>
+        <tbody>
+     <tr class="available-stock">
+                <td>2024-11-28</td>
+                <td>Box Bar</td>
+                <td>80</td>
+                <td>0</td>
+                <td>2024-11-29</td>
+                <td>30</td>
+                <td>2x4 Frames</td>
+                <td>50</td>
+            </tr>
+            <tr class="requested-stock">
+                <td>2024-11-27</td>
+                <td>Cladding</td>
+                <td>0</td>
+                <td>0</td>
+                <td>-</td>
+                <td>0</td>
+                <td>-</td>
+                <td>0</td>
+            </tr>
+            <tr class="using-stock">
+                <td>2024-11-25</td>
+                <td>Plastic Sheet</td>
+                <td>0</td>
+                <td>0</td>
+                <td>-</td>
+                <td>0</td>
+                <td>-</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        // JavaScript for Sorting the Table
+        function sortTable(n) {
+            const table = document.getElementById("stockTable");
+            let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            switching = true;
+            dir = "asc"; // Set the sorting direction to ascending initially
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Material Stock and Inventory Usage Charts -->
     <div class="chart-container">
         <div class="chart">
             <h3>Material Stock</h3>
-          
-
             <canvas id="stockChart"></canvas>
-            <script>
-                //JavaScript for Chart.js
-                const ctx = document.getElementById('stockChart').getContext('2d');
-                const stockChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Box Bar', 'Cladding', 'Plastic'],
-                        datasets: [{
-                            label: 'Stock Levels',
-                            data: [100, 75, 50],
-                            backgroundColor: ['#DE3163', '#40E0D0', '#f0d301']
-                        }]
-                    }
-                });
-            </script>
-        
-
-
-
-    <script>
-        // JavaScript for Chart.js
-        const ctx = document.getElementById('stockChart').getContext('2d');
-        const stockChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Box Bar', 'Cladding', 'Plastic'],
-                datasets: [{
-                    label: 'Stock Levels',
-                    data: [100, 75, 50],
-                    backgroundColor: ['red', 'yellow', 'green']
-                }]
-            }
-        });
-    </script>
-</canvas>
-
-            
         </div>
         <div class="chart">
             <h3>Inventory Usage</h3>
@@ -64,58 +199,31 @@
 
     <script>
         // Material Stock Bar Chart
-        new Chart(document.getElementById('materialStock'), {
+        const ctx = document.getElementById('stockChart').getContext('2d');
+        const stockChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Paper', 'Ink', 'Components'],
+                labels: ['Box Bar', 'Cladding', 'Plastic','Cutting Disk',],
                 datasets: [{
-                    label: 'Stock Level (kg/units)',
-                    data: [500, 250, 100],
-                    backgroundColor: ['#FF7F50', '#DE3163', '#FFC107']
+                    label: 'Stock Levels',
+                    data: [50, 5, 5,5],
+                    backgroundColor: ['#DE3163', '#40E0D0', '#f0d301']
                 }]
             }
         });
 
         // Inventory Usage Pie Chart
-        new Chart(document.getElementById('inventoryUsage'), {
-            type: 'pie',
-            data: {
-                labels: ['Used', 'Remaining'],
-                datasets: [{
-                    data: [65, 35],
-                    backgroundColor: ['#17a589 ', '#f39c12']
-                }]
-            }
-        });
-    </script> 
-    -->
-
-
-    <!-- Additional Chart 
-    <h3>Overall Stock Levels</h3>
-    <script>
-        // Inventory Usage Pie Chart
-        new Chart(document.getElementById('inventoryUsage'), {
-            type: 'pie',
-            data: {
-                labels: ['Used', 'Remaining'],
-                datasets: [{
-                    data: [65, 35],
-                    backgroundColor: ['#FF5722', '#4CAF50']
-                }]
-            }
-        });
+      //  new Chart(document.getElementById('inventoryUsage'), {
+       //     type: 'pie',
+        //    data: {
+       //         labels: ['Used', 'Remaining'],
+          //      datasets: [{
+         //           data: [65, 35],
+          //          backgroundColor: ['#17a589 ', '#f39c12']
+         //       }]
+         //   }
+       // });
     </script>
-    
-    <canvas id="stockChart"></canvas>
-
--->
-
-    <!-- Image -->
-    <img src="./assets/chart.png" alt="Sample Image" style="max-width: 50%; height: auto;">
-
-     
-
 
 </body>
 </html>
