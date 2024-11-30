@@ -6,13 +6,66 @@
     <title>Home Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
+    <style>
+    /* Delay Project Button Styling */
+    .delay-button {
+        display: inline-block;
+        padding: 15px 25px;
+        background-color: #FF5733; /* Bright red-orange color */
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+    .delay-button:hover {
+        background-color: #C0392B; /* Darker red-orange on hover */
+        transform: translateY(-5px); /* Subtle lift effect */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    }
+
+    .delay-button:active {
+        transform: translateY(0); /* Button "pressed" effect */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reset shadow */
+    }
+
+    /* Navigation Buttons */
+    nav {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    nav button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+        transition: background-color 0.3s;
+    }
+
+    nav button:hover {
+        background-color: #45a049;
+    }</style>
 </head>
 <body>
     <header>
         <h1>Welcome to the WDML Advertising Project Dashboard</h1>
         <p>Board Project.</p>
     </header>
+
+    <!-- Delay Project Button -->
     <a href="#" class="delay-button">Delay Project</a>
+
+    <!-- Navigation Buttons -->
     <nav>
         <button onclick="location.href='progress.html'">Projects Progress</button>
         <button onclick="location.href='timeline.html'">Progress Timeline</button>
@@ -20,10 +73,44 @@
         <button onclick="location.href='structure.html'">Planning</button>
         <button onclick="location.href='gallery.html'">Gallery</button>
     </nav>
+
     <div class="content">
+        <!-- Image -->
         <img src="./assets/banner.jpg" alt="Sample Image" style="max-width: 100%; height: auto;" >
+
+        <!-- Display Current Time -->
         <div id="clock"></div>
-        <input type="date" id="calendar">
+
+      
     </div>
+
+    <script>
+        // Function to update the time
+        function updateClock() {
+            const now = new Date();
+
+            // Format the date and time
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const day = now.getDate();
+            const month = now.getMonth() + 1; // JavaScript months are 0-based
+            const year = now.getFullYear();
+
+            // Set the formatted date and time to the clock div
+            const formattedDate = `${month}/${day}/${year}`;
+            const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+            document.getElementById('clock').innerHTML = `Date: ${formattedDate} | Time: ${formattedTime}`;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initialize clock on page load
+        updateClock();
+    </script>
 </body>
 </html>
+
+
