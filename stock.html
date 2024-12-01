@@ -49,6 +49,15 @@
             background-color: #f9f9f9;
         }
 
+        /* Change background color for specific columns */
+       /* th:nth-child(3), td:nth-child(3) {
+            background-color: #2bb0a1; /* Yellow background for Request Date */
+      /*  }
+
+        th:nth-child(4), td:nth-child(4) {
+            background-color: #7bd1df; /* Light red background for Qty */
+        }
+
         /* Different row colors */
         .available-stock {
             background-color: #E8F8F5; /* Light greenish */
@@ -96,19 +105,40 @@
             height: 400px;
             margin: 30px 0;
         }
+
+        /* Hide everything except the table when printing */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #stockTable, #stockTable * {
+                visibility: visible;
+            }
+            #stockTable {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            /* Keep buttons and charts visible when not printing */
+            #printButton, #backButton {
+                visibility: hidden;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-button">← Back to Home</a>
+    <a href="index.html" class="back-button" id="backButton">← Back to Home</a>
     <h2>Stock Progress</h2>
 
     <!-- Stock Sheet Table -->
     <h3>Stock Usage Information</h3>
+    <button id="printButton" onclick="window.print()">Print Table</button> <!-- Print button -->
+
     <table id="stockTable">
         <thead>
             <tr>
-                <th onclick="sortTable(1)">Item <span class="sort-icon">&#9660;</span></th>
+                <th onclick="sortTable(1)">Item <span class="sort-icon"></span></th>
                 <th onclick="sortTable(2)">Qty <span class="sort-icon">&#9660;</span></th>
                 <th onclick="sortTable(0)">Request Date <span class="sort-icon">&#9660;</span></th>
                 <th onclick="sortTable(3)">Request Qty <span class="sort-icon">&#9660;</span></th>
@@ -308,14 +338,9 @@
             stock: stockData[index]
         }));
 
-        // Sort data by stock in descending order
-        data.sort((a, b) => b.stock - a.stock);
-
-        // Now separate the sorted data back into labels and values
         const sortedLabels = data.map(item => item.label);
         const sortedStockData = data.map(item => item.stock);
 
-        // Horizontal bar chart configuration with sorted data
         const ctx = document.getElementById('stockChart').getContext('2d');
         const stockChart = new Chart(ctx, {
             type: 'bar', // horizontal bar chart
@@ -347,6 +372,5 @@
             }
         });
     </script>
-
 </body>
 </html>
