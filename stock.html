@@ -2,375 +2,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Page</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Project Timeline</title>
     <style>
-        /* General Page Styling */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
         }
-
-        h2, h3 {
-            text-align: center;
-            color: #333;
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            border-left: 4px solid #4CAF50;
         }
-
-        /* Table Styling */
-        table {
-            width: 100%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+        .milestone {
+            margin-left: 30px;
+            margin-bottom: 30px;
+            position: relative;
         }
-
-        th, td {
-            padding: 12px 20px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
+        .milestone::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
             background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
+            border-radius: 50%;
+            left: -42px;
+            top: 0;
         }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        /* Change background color for specific columns */
-       /* th:nth-child(3), td:nth-child(3) {
-            background-color: #2bb0a1; /* Yellow background for Request Date */
-      /*  }
-
-        th:nth-child(4), td:nth-child(4) {
-            background-color: #7bd1df; /* Light red background for Qty */
-        }
-
-        /* Different row colors */
-        .available-stock {
-            background-color: #E8F8F5; /* Light greenish */
-        }
-
-        .requested-stock {
-            background-color: #FFEBEE; /* Light pink */
-        }
-
-        .using-stock {
-            background-color: #FFF3E0; /* Light orange */
-        }
-
-        /* Sort Icon */
-        .sort-icon {
-            margin-left: 10px;
-            cursor: pointer;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            th, td {
-                font-size: 12px;
-                padding: 8px;
-            }
-        }
-
-        /* Back Button */
-        .back-button {
-            text-decoration: none;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
+        .milestone-details {
+            background-color: #f4f4f4;
+            padding: 15px;
             border-radius: 5px;
+        }
+        .dilay-details {
+            background-color: #ff6868;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .back-button {
+            display: block;
             margin-bottom: 20px;
-            display: inline-block;
-        }
-        .back-button:hover {
-            background-color: #45a049;
-        }
-        
-        /* Canvas for Bar Chart */
-        #stockChart {
-            width: 100%;
-            height: 400px;
-            margin: 30px 0;
-        }
-
-        /* Hide everything except the table when printing */
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-            #stockTable, #stockTable * {
-                visibility: visible;
-            }
-            #stockTable {
-                position: absolute;
-                left: 0;
-                top: 0;
-            }
-            /* Keep buttons and charts visible when not printing */
-            #printButton, #backButton {
-                visibility: hidden;
-            }
+            text-decoration: none;
+            color: #4CAF50;
         }
     </style>
 </head>
 <body>
+    <a href="index.html" class="back-button">← Back to Home</a>
+    <h1>Project Timeline</h1>
 
-    <a href="index.html" class="back-button" id="backButton">← Back to Home</a>
-    <h2>Stock Progress</h2>
+    <div class="timeline">
+        <div class="milestone">
+            <div class="dilay-details">
+                <h3>Delayed projects</h3>
+                <h4>01.Kuliyapitiya (7x6) Double side Top Side Board </h4>
+                <small> - 2024-10-07 Artwork Done</small>
+                <p></p><small> - Print Received 2024-10-10</small>
+                <p></p><small>- Final Date: Pending</small>
+                <p></p><small>- 2024-11-27 Project Plane Given by Mr. Chaminda</small>
+                <p></p>
+             <small>- Project Delay <span id="project-delay"></span> Days</small>
+         
+            </div>
+        
+        </div>
 
-    <!-- Stock Sheet Table -->
-    <h3>Stock Usage Information</h3>
-    <button id="printButton" onclick="window.print()">Print Table</button> <!-- Print button -->
+        <div class="timeline">
+            <div class="milestone">
+                <div class="milestone-details">
+                    <h3>Job Requested</h3>
+                    <h4>01.GET TOGETHER TROPHY 2024-12-13</h4>
+                    <small>All Trophy | Sizes - 4 QTY - 90</small>
+                    <p></p><small>Final Date: 2024-11-10</small>
+                    <h4>02.Kekirawa New Lab Open 2024-12-25</h4>
+                    <small>Main Board(16.5x4), Top Side Board (8x8), Side Sign (10x4)</small>
+                    <p></p><small>Final Date: 2024-12-20</small>
+                    <h4>03.Hettipola New Lab Open 2024-12-?</h4>
+                    <small>Main Board(10x4), Top Side Board (8x6)</small>
+                    <p></p><small>Final Date: 2024-12-?</small>
+                </div>
+            </div>
+        </div>
 
-    <table id="stockTable">
-        <thead>
-            <tr>
-                <th onclick="sortTable(1)">Item <span class="sort-icon"></span></th>
-                <th onclick="sortTable(2)">Qty <span class="sort-icon">&#9660;</span></th>
-                <th onclick="sortTable(0)">Request Date <span class="sort-icon">&#9660;</span></th>
-                <th onclick="sortTable(3)">Request Qty <span class="sort-icon">&#9660;</span></th>
-                <th onclick="sortTable(3)">Received Date <span class="sort-icon">&#9660;</span></th>
-                <th onclick="sortTable(3)">Received Qty <span class="sort-icon">&#9660;</span></th>
-                <th onclick="sortTable(4)">Use Date <span class="sort-icon">&#9660;</span></th>
-                <th onclick="sortTable(5)">Using Qty <span class="sort-icon">&#9660;</span></th>
-                <th onclick="sortTable(6)">Description <span class="sort-icon">&#9660;</span></th>
-                <th onclick="sortTable(6)">Available Stock <span class="sort-icon">&#9660;</span></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="available-stock">
-                <td>Box Bar</td>
-                <td>60</td>
-                <td>2024-11-28</td>
-                <td>0</td>
-                <td>-</td>
-                <td>-</td>
-                <td>2024-11-29</td>
-                <td>30</td>
-                <td>2x4 Frames</td>
-                <td>30</td>
-            </tr>
-            <tr class="requested-stock">
-                <td>Cladding</td>
-                <td>0</td>
-                <td>2024-11-27</td>
-                <td>10</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>10</td>
-            </tr>
-            <tr class="using-stock">
-                <td>Plastic Sheet</td>
-                <td>0</td>
-                <td>2024-11-25</td>
-                <td>0</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>0</td>
-                <td>-</td>
-                <td>0</td>
-            </tr>
-            <tr class="using-stock">
-                <td>POP Rivert Box</td>
-                <td>0</td>
-                <td>2024-11-25</td>
-                <td>5</td>
-                <td>2024-11-28</td>
-                <td>0</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>5</td>
-            </tr>
-            <tr class="using-stock">
-                <td>Cutting Disc</td>
-                <td>0</td>
-                <td>2024-11-25</td>
-                <td>10</td>
-                <td>-</td>
-                <td>-</td>
-                <td>2024-11-28</td>
-                <td>0</td>
-                <td>2x4 Frame</td>
-                <td>8</td>
-            </tr>
-            <tr class="using-stock">
-                <td>Welding Rods</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr class="using-stock">
-                <td>GI Pipe</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr class="using-stock">
-                <td>Grinding Disc</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr class="using-stock">
-                <td>QD Paint</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr class="using-stock">
-                <td>Screw Nails</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-            <tr class="using-stock">
-                <td>Soft Glue</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="timeline">
+            <div class="milestone">
+                <div class="milestone-details">
+                    <h3>Job Confirmed</h3>
+                    <h4>01.Gettogether Trophy</h4>
+                    <p>Sample Trophy Submitted</p>
+                    <small>Date: 2024-12-22</small>
+                    <h4>02. Kekirawa - Pending....</h4>
+                    <p></p>
+                    <small>Date: 2024-12-26</small>
+                    <h4>03. Hettipola - Pending....</h4>
+                    <p>Artwork Complete but not Received Confirmation</p>
+                    <small>Date: 2024-12-26</small>
+                </div>
+            </div>
 
-    <!-- Chart Canvas -->
-    <canvas id="stockChart"></canvas>
+            <div class="milestone">
+                <div class="milestone-details">
+                    <h3>Material Received</h3>
+                    <h4>01.Gettogether Trophy</h4>
+                    <p>Trophy Material Received to Print Shop</p>
+                    <p>Job not started yet</p>
+                    <p>GM Not approved Material Cutting Progress</p>
+                    <small>Date: 2024-11-28</small>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-details">
+                    <h3>Job Starting</h3>
+                    <p>Project implementation begins</p>
+                    <p>Pending...</p>
+                    <small>Date: 2024-11-26</small>
+                </div>
+            </div>
+
+            <div class="milestone">
+                <div class="milestone-details">
+                    <h3>Final Delivery</h3>
+                    <p>Project completed and delivered to client</p>
+                    <small>Date: 2024-12-20</small>
+                </div>
+            </div>
+        </div>
+        <div>
+            <img src="./assets/time line.png" alt="Sample Image" style="max-width: 100%; height: auto;">
+        </div>
 
     <script>
-        // JavaScript for Sorting the Table
-        function sortTable(n) {
-            const table = document.getElementById("stockTable");
-            let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-            switching = true;
-            dir = "asc";
-            while (switching) {
-                switching = false;
-                rows = table.rows;
-                for (i = 1; i < (rows.length - 1); i++) {
-                    shouldSwitch = false;
-                    x = rows[i].getElementsByTagName("TD")[n];
-                    y = rows[i + 1].getElementsByTagName("TD")[n];
-                    if (dir == "asc") {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else if (dir === "desc") {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                    switchcount++;
-                } else {
-                    if (switchcount === 0 && dir === "asc") {
-                        dir = "desc";
-                        switching = true;
-                    }
-                }
-            }
+        // Set the project final date and calculate the delay
+        const finalDate = new Date("2024-10-07"); // Set final date of the project
+        const today = new Date(); // Get the current date
+
+        // Calculate the difference in days
+        const timeDifference = today - finalDate; // Difference in milliseconds
+        const delayInDays = Math.floor(timeDifference / (1000 * 3600 * 24)); // Convert milliseconds to days
+
+        // Update the delay in the HTML
+        const delayElement = document.getElementById("project-delay");
+        if (delayElement) {
+            delayElement.textContent = delayInDays > 0 ? delayInDays : 0;
         }
-
-        // Material Stock Bar Chart (Horizontal)
-        const labels = ['Box Bar', 'Cladding', 'Plastic', 'Cutting Disc', 'POP Rivert', 'Welding Rods', 'GI Pipe', 'Grinding Disc', 'QD Paint', 'Screw Nails', 'Soft Glue'];
-        const stockData = [30, 10, 5, 10, 5, 0, 0, 0, 0, 0, 0]; // quantities
-
-        // Combine labels and stock data into an array of objects
-        const data = labels.map((label, index) => ({
-            label: label,
-            stock: stockData[index]
-        }));
-
-        const sortedLabels = data.map(item => item.label);
-        const sortedStockData = data.map(item => item.stock);
-
-        const ctx = document.getElementById('stockChart').getContext('2d');
-        const stockChart = new Chart(ctx, {
-            type: 'bar', // horizontal bar chart
-            data: {
-                labels: sortedLabels, // use sorted labels
-                datasets: [{
-                    label: 'Stock Levels',
-                    data: sortedStockData, // use sorted stock data
-                    backgroundColor: ['#DE3163', '#40E0D0', '#f0d301', '#9b59b6', '#16a085', '#2ecc71', '#f39c12', '#e74c3c', '#3498db', '#f1c40f', '#9b59b6'],
-                }]
-            },
-            options: {
-                indexAxis: 'y', // Makes the bars horizontal
-                scales: {
-                    x: {
-                        beginAtZero: true, // Ensure the x-axis starts at 0
-                        title: {
-                            display: true,
-                            text: 'Quantity'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Material'
-                        }
-                    }
-                }
-            }
-        });
     </script>
 </body>
 </html>
