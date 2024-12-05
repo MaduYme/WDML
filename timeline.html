@@ -45,6 +45,86 @@
             margin-bottom: 20px;
             text-decoration: none;
             color: #4CAF50;
+        }body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f3f3f3;
+            color: #333;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .project {
+            margin-bottom: 30px;
+        }
+
+        .project h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            position: relative;
+            background: #e0e0e0;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            background: linear-gradient(90deg, #4caf50, #03a9f4, #9c27b0);
+            height: 100%;
+        }
+
+        .milestones {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            list-style-type: none;
+            padding: 0;
+            font-size: 12px;
+        }
+
+        .milestones li {
+            position: relative;
+            text-align: center;
+        }
+
+        .milestones li:before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: #4caf50;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .milestones li span {
+            display: block;
+            font-weight: bold;
+        }
+
+        .milestones li small {
+            display: block;
+            color: #666;
         }
     </style>
 </head>
@@ -129,10 +209,112 @@
                 </div>
             </div>
         </div>
-        <div>
-            <img src="./assets/time line.png" alt="Sample Image" style="max-width: 100%; height: auto;">
+        <div class="timeline">
+            <h1>Project Timeline</h1>
+    
+            <!-- Trophy Project -->
+            <div class="project">
+                <h2>Trophy Project</h2>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 73%;"></div>
+                </div>
+                <ul class="milestones">
+                    <li>
+                        <span>2024-11-07</span>
+                        <small>1st Discussion</small>
+                    </li>
+                    <li>
+                        <span>2024-11-09</span>
+                        <small>Sample Making</small>
+                    </li>
+                    <li>
+                        <span>2024-11-22</span>
+                        <small>Artwork Done</small>
+                    </li>
+                    <li>
+                        <span>2024-11-28</span>
+                        <small>Material Received</small>
+                    </li>
+                    <li>
+                        <span>2024-12-05</span>
+                        <small>Material Cutting Finished</small>
+                    </li>
+                    <li>
+                        <span>2024-12-06</span>
+                        <small>Payment Pending</small>
+                    </li>
+                    <li>
+                        <span>2024-12-07</span>
+                        <small>Painting Pending</small>
+                    </li>
+                    <li>
+                        <span>2024-12-10</span>
+                        <small>Ending Date</small>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Kekirawa Board Project -->
+            <div class="project">
+                <h2>Kekirawa Board Project</h2>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 50%;"></div>
+                </div>
+                <ul class="milestones">
+                    <li>
+                        <span>2024-11-24</span>
+                        <small>1st Discussion</small>
+                    </li>
+                    <li>
+                        <span>2024-11-28</span>
+                        <small>Job Card Received</small>
+                    </li>
+                    <li>
+                        <span>Pending</span>
+                        <small>Artwork Confirmation</small>
+                    </li>
+                    <li>
+                        <span>Pending</span>
+                        <small>Material Received</small>
+                    </li>
+                    <li>
+                        <span>2024-12-20</span>
+                        <small>Ending Date</small>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- HettiPola Board Project -->
+            <div class="project">
+                <h2>HettiPola Board Project</h2>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 30%;"></div>
+                </div>
+                <ul class="milestones">
+                    <li>
+                        <span>2024-11-24</span>
+                        <small>1st Discussion</small>
+                    </li>
+                    <li>
+                        <span>2024-11-21</span>
+                        <small>Job Card Received</small>
+                    </li>
+                    <li>
+                        <span>Pending</span>
+                        <small>Artwork Confirmation</small>
+                    </li>
+                    <li>
+                        <span>Pending</span>
+                        <small>Material Received</small>
+                    </li>
+                    <li>
+                        <span>2024-12-?</span>
+                        <small>Ending Date</small>
+                    </li>
+                </ul>
+            </div>
         </div>
-
+        
     <script>
         // Set the project final date and calculate the delay
         const finalDate = new Date("2024-10-07"); // Set final date of the project
